@@ -34,7 +34,7 @@ public class JSON {
     return JSON((obj as? NSDictionary)?[key])
   }
 
-  public var object: Any? { return obj }
+  public var object: Any? { return obj is NSNull ? nil : obj }
 
   public var arrayObject: [Any]? { return obj as? [Any] }
   public var array: [JSON]? { return arrayObject?.map { JSON($0) } }
