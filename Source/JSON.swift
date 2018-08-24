@@ -110,7 +110,7 @@ public class JSON {
     guard let obj = obj else { return nil }
     guard JSONSerialization.isValidJSONObject(obj) else { return nil }
     let data = try? JSONSerialization.data(withJSONObject: obj, options: opt)
-    return data.flatMap { String(data: $0, encoding: .utf8) }
+    return data.flatMap { String(data: $0, encoding: encoding) }
   }
 }
 
@@ -118,7 +118,7 @@ public class JSON {
 
 extension JSON: Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
   public var description: String {
-    return rawString(options: .prettyPrinted) ?? "unknown"
+    return rawString() ?? "unknown"
   }
 
   public var debugDescription: String {
