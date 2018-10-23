@@ -14,6 +14,10 @@ public class JSON {
     self.obj = obj
   }
 
+  public convenience init() {
+    self.init(obj: nil)
+  }
+
   public convenience init(_ obj: Any?) {
     if let data = obj as? Data {
       self.init(data: data)
