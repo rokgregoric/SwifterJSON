@@ -122,6 +122,9 @@ public class JSON {
 
 extension JSON: Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
   public var description: String {
+    if #available(iOS 11.0, *) {
+      return rawString(options: [.sortedKeys, .prettyPrinted]) ?? "unknown"
+    }
     return rawString() ?? "unknown"
   }
 
