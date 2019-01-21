@@ -61,6 +61,12 @@ public class JSON {
   public var number: NSNumber? { return obj as? NSNumber }
   public var numberValue: NSNumber { return number ?? NumberFormatter().number(from: stringValue) ?? 0 }
 
+  public var decimal: Decimal? { return obj as? Decimal }
+  public var decimalValue: Decimal { return decimal ?? numberValue.decimalValue }
+
+  public var decimalNumber: NSDecimalNumber? { return obj as? NSDecimalNumber }
+  public var decimalNumberValue: NSDecimalNumber { return decimalNumber ?? decimalValue as NSDecimalNumber }
+
   public var bool: Bool? { return obj as? Bool }
   public var boolValue: Bool { return bool ?? Bool(stringValue) ?? false }
 
