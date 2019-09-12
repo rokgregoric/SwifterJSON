@@ -116,7 +116,14 @@ public class JSON {
     return str.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed).flatMap { URL(string: $0) }
   }
 
-  public func rawString(_ encoding: String.Encoding = .utf8, options opt: JSONSerialization.WritingOptions = .prettyPrinted) -> String? {
+  public static var defaultOptions: JSONSerialization.WritingOptions {
+    if #available(iOS 11.0, *) {
+      return [.sortedKeys, .prettyPrinted]
+    }
+    return [.prettyPrinted]
+  }
+
+  public func rawString(_ encoding: String.Encoding = .utf8, options opt: JSONSerialization.WritingOptions = defaultOptions) -> String? {
     guard let obj = obj else { return nil }
     guard JSONSerialization.isValidJSONObject(obj) else { return nil }
     let data = try? JSONSerialization.data(withJSONObject: obj, options: opt)
@@ -124,14 +131,11 @@ public class JSON {
   }
 }
 
-// MARK: - Printable, DebugPrintable
+// MARK: - CustomStringConvertible, CustomDebugStringConvertible
 
-extension JSON: Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+extension JSON: CustomStringConvertible, CustomDebugStringConvertible {
   public var description: String {
-    if #available(iOS 11.0, *) {
-      return rawString(options: [.sortedKeys, .prettyPrinted]) ?? "unknown"
-    }
-    return rawString() ?? "unknown"
+    return rawString() ?? "nil"
   }
 
   public var debugDescription: String {
