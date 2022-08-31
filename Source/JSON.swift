@@ -117,7 +117,7 @@ public class JSON {
   }
 
   public static var defaultOptions: JSONSerialization.WritingOptions {
-    if #available(iOS 11.0, *) {
+    if #available(iOS 11.0, macOS 10.13, *) {
       return [.sortedKeys, .prettyPrinted]
     }
     return [.prettyPrinted]
