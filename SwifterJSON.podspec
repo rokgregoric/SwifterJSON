@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = "SwifterJSON"
-  s.version     = "1.0.0"
+  s.version     = "1.1"
   s.summary     = "SwifterJSON makes it easy to deal with JSON data in Swift"
   s.homepage    = "https://github.com/rokgregoric/SwifterJSON"
   s.license     = { :type => 'MIT', :file => 'LICENSE' }
